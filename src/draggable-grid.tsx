@@ -29,7 +29,7 @@ export interface IDraggableGridProps<DataType extends IBaseItemType> {
   style?: ViewStyle
   itemHeight?: number
   dragStartAnimation?: StyleProp<any>
-  onItemPress?: (item: DataType) => void
+  onItemPress?: (item: DataType, itemIndex:number) => void
   onDragStart?: (item: DataType) => void
   onDragging?: (gestureState: PanResponderGestureState) => void
   onDragRelease?: (newSortedData: DataType[]) => void
@@ -119,7 +119,7 @@ export const DraggableGrid = function<DataType extends IBaseItemType>(
     gridHeight.setValue(rowCount * blockHeight)
   }
   function onBlockPress(itemIndex: number) {
-    props.onItemPress && props.onItemPress(items[itemIndex].itemData)
+    props.onItemPress && props.onItemPress(items[itemIndex].itemData, itemIndex)
   }
   function onStartDrag(_: GestureResponderEvent, gestureState: PanResponderGestureState) {
     const activeItem = getActiveItem()
