@@ -1,3 +1,5 @@
+/** @format */
+
 import * as React from 'react'
 import { useState, useEffect } from 'react'
 import {
@@ -29,12 +31,12 @@ export interface IDraggableGridProps<DataType extends IBaseItemType> {
   style?: ViewStyle
   itemHeight?: number
   dragStartAnimation?: StyleProp<any>
-  onItemPress?: (item: DataType, itemIndex:number) => void
+  onItemPress?: (item: DataType, itemIndex: number) => void
   onDragStart?: (item: DataType) => void
   onDragging?: (gestureState: PanResponderGestureState) => void
   onDragRelease?: (newSortedData: DataType[]) => void
   onResetSort?: (newSortedData: DataType[]) => void
-  delayLongPress?:number
+  delayLongPress?: number
 }
 interface IMap<T> {
   [key: string]: T
@@ -300,13 +302,6 @@ export const DraggableGrid = function<DataType extends IBaseItemType>(
           scale: dragStartAnimatedValue,
         },
       ],
-      shadowColor: '#000000',
-      shadowOpacity: 0.2,
-      shadowRadius: 6,
-      shadowOffset: {
-        width: 1,
-        height: 1,
-      },
     }
   }
   function addItem(item: DataType, index: number) {
