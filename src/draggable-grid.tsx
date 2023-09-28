@@ -9,7 +9,7 @@ import {
   StyleProp,
   GestureResponderEvent,
   PanResponderGestureState,
-  ViewStyle,
+  ViewStyle, Alert,
 } from 'react-native'
 import { Block } from './block'
 import { findKey, findIndex, differenceBy } from './utils'
@@ -199,7 +199,7 @@ export const DraggableGrid = function<DataType extends IBaseItemType>(
     }
   }
   function onHandRelease() {
-    console.error('onHandRelease')
+    Alert.alert('onHandRelease', 'onHandRelease')
     const activeItem = getActiveItem()
     if (!activeItem) return false
     props.onDragRelease && props.onDragRelease(getSortData())
