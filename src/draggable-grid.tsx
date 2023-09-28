@@ -97,6 +97,15 @@ export const DraggableGrid = function<DataType extends IBaseItemType>(
     onPanResponderGrant: onStartDrag,
     onPanResponderMove: onHandMove,
     onPanResponderRelease: onHandRelease,
+    onPanResponderTerminate: () => {
+      console.log('onPanResponderTerminate')
+    },
+    onPanResponderReject: () => {
+      console.log('onPanResponderReject')
+    },
+    onPanResponderEnd: () => {
+      console.log('onPanResponderEnd')
+    }
   })
 
   function initBlockPositions() {
@@ -124,6 +133,7 @@ export const DraggableGrid = function<DataType extends IBaseItemType>(
     props.onItemPress && props.onItemPress(items[itemIndex].itemData, itemIndex)
   }
   function onStartDrag(_: GestureResponderEvent, gestureState: PanResponderGestureState) {
+    console.log('onStartDrag')
     const activeItem = getActiveItem()
     if (!activeItem) return false
     props.onDragStart && props.onDragStart(activeItem.itemData)
@@ -145,6 +155,7 @@ export const DraggableGrid = function<DataType extends IBaseItemType>(
     })
   }
   function onHandMove(_: GestureResponderEvent, gestureState: PanResponderGestureState) {
+    console.log('onHandMove')
     const activeItem = getActiveItem()
     if (!activeItem) return false
     const { moveX, moveY } = gestureState
@@ -188,6 +199,7 @@ export const DraggableGrid = function<DataType extends IBaseItemType>(
     }
   }
   function onHandRelease() {
+    console.log('onHandRelease')
     const activeItem = getActiveItem()
     if (!activeItem) return false
     props.onDragRelease && props.onDragRelease(getSortData())
