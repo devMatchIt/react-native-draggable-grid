@@ -59,7 +59,8 @@ var DraggableGrid = function (props) {
         onPanResponderRelease: onHandRelease,
         onPanResponderTerminate: onHandRelease,
         onPanResponderReject: onHandRelease,
-        onPanResponderEnd: onHandRelease
+        onPanResponderEnd: onHandRelease,
+        onPanResponderStart: onStartDrag
     });
     function initBlockPositions() {
         items.forEach(function (_, index) {
@@ -86,7 +87,6 @@ var DraggableGrid = function (props) {
         props.onItemPress && props.onItemPress(items[itemIndex].itemData, itemIndex);
     }
     function onStartDrag(_, gestureState) {
-        console.error('onStartDrag');
         var activeItem = getActiveItem();
         if (!activeItem)
             return false;
@@ -109,7 +109,6 @@ var DraggableGrid = function (props) {
         });
     }
     function onHandMove(_, gestureState) {
-        console.error('onHandMove');
         var activeItem = getActiveItem();
         if (!activeItem)
             return false;
@@ -146,7 +145,6 @@ var DraggableGrid = function (props) {
         }
     }
     function onHandRelease() {
-        react_native_1.Alert.alert('onHandRelease', 'onHandRelease');
         var activeItem = getActiveItem();
         if (!activeItem)
             return false;
