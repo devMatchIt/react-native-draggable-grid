@@ -1,4 +1,5 @@
 "use strict";
+/** @format */
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -56,6 +57,9 @@ var DraggableGrid = function (props) {
         onPanResponderGrant: onStartDrag,
         onPanResponderMove: onHandMove,
         onPanResponderRelease: onHandRelease,
+        onPanResponderTerminate: onHandRelease,
+        onPanResponderReject: onHandRelease,
+        onPanResponderEnd: onHandRelease
     });
     function initBlockPositions() {
         items.forEach(function (_, index) {
@@ -82,6 +86,7 @@ var DraggableGrid = function (props) {
         props.onItemPress && props.onItemPress(items[itemIndex].itemData, itemIndex);
     }
     function onStartDrag(_, gestureState) {
+        console.error('onStartDrag');
         var activeItem = getActiveItem();
         if (!activeItem)
             return false;
@@ -104,6 +109,7 @@ var DraggableGrid = function (props) {
         });
     }
     function onHandMove(_, gestureState) {
+        console.error('onHandMove');
         var activeItem = getActiveItem();
         if (!activeItem)
             return false;
@@ -140,6 +146,7 @@ var DraggableGrid = function (props) {
         }
     }
     function onHandRelease() {
+        react_native_1.Alert.alert('onHandRelease', 'onHandRelease');
         var activeItem = getActiveItem();
         if (!activeItem)
             return false;
@@ -254,13 +261,6 @@ var DraggableGrid = function (props) {
                     scale: dragStartAnimatedValue,
                 },
             ],
-            shadowColor: '#000000',
-            shadowOpacity: 0.2,
-            shadowRadius: 6,
-            shadowOffset: {
-                width: 1,
-                height: 1,
-            },
         };
     }
     function addItem(item, index) {

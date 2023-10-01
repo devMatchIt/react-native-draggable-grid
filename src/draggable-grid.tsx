@@ -97,15 +97,9 @@ export const DraggableGrid = function<DataType extends IBaseItemType>(
     onPanResponderGrant: onStartDrag,
     onPanResponderMove: onHandMove,
     onPanResponderRelease: onHandRelease,
-    onPanResponderTerminate: () => {
-      console.error('onPanResponderTerminate')
-    },
-    onPanResponderReject: () => {
-      console.error('onPanResponderReject')
-    },
-    onPanResponderEnd: () => {
-      console.error('onPanResponderEnd')
-    }
+    onPanResponderTerminate: onHandRelease,
+    onPanResponderReject: onHandRelease,
+    onPanResponderEnd: onHandRelease
   })
 
   function initBlockPositions() {
